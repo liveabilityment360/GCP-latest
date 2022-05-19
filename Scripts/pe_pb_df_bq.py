@@ -10,9 +10,10 @@ logging.getLogger().setLevel(logging.INFO)
 
 # Service account key path
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/itproject2022bootcamp/gcp-project-346311-bf82119ae708.json"
-INPUT_SUBSCRIPTION = "projects/gcp-project-346311/subscriptions/my_pub_topic1-sub"
+INPUT_SUBSCRIPTION = "projects/gcp-project-346311/subscriptions/priv-equity-sub"
 BIGQUERY_TABLE = "gcp-project-346311:private_equity.test_priv_equi"
-BIGQUERY_SCHEMA = "timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,country:STRING,industry:STRING,sub_industry:STRING,client__focus:STRING,business_model:STRING,company_status:STRING,round:STRING,amount_raised:INTEGER,currency:STRING,date:DATE,quarter:STRING,Month:STRING,Year:INTEGER,investors:STRING,investor_types:STRING,company_valuation_usd:STRING,valuation_date:DATE"
+BIGQUERY_SCHEMA ="timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,country:STRING,state:STRING,city:STRING,continent:STRING,industry:STRING,sub_industry:STRING,client_focus:STRING,business_model:STRING,company_status:STRING,round:STRING,amount_raised:INTEGER,currency:STRING,date:DATE,quarter:STRING,Month:STRING,Year:INTEGER,investor_types:STRING,investor_name:STRING,company_valuation_usd:STRING,valuation_date:DATE"
+
 #BIGQUERY_SCHEMA = "id:NUMERIC,ticker:STRING,title:STRING,category:STRING,content:STRING,release_date:DATE,provider:STRING,url:STRING,article_id:NUMERIC"
 
 class CustomParsing(beam.DoFn):
@@ -57,7 +58,7 @@ def run():
          (
                p
                | "ReadFromPubSub" >> beam.io.gcp.pubsub.ReadFromPubSub(subscription=known_args.input_subscription, timestamp_attribute=None)
-                  #.with_output_types(bytes) # | "UTF-8 bytes to string" >> beam.Map(lambda msg: msg.decode("utf-8"))  
+                  #.with_output_types(bytes) # | "UTF-8 bytes to string" >> beam.Map(lambda msg: msg.decode("utf-8"))
                   # "CustomParse" >> beam.ParDo(CustomParsing()) #        | "print" >> beam.Map(collect)
                | "WriteToBigQuery" >> beam.io.WriteToBigQuery(known_args.output_table,schema=known_args.output_schema,
                   write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,)
