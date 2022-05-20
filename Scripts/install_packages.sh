@@ -13,3 +13,4 @@ sudo pip install google-cloud
 sudo pip install google-cloud-pubsub
 python3 -m pip install --upgrade pip
 pip install apache-beam
+pip install apitools
