@@ -146,7 +146,7 @@ def run():
     project='gcp-project-346311',
     job_name='finfo-pbsb-bq',
     temp_location='gs://finfo-2022/temp',
-    region='us-central1')
+    region='australia-southeast2')
        pipeline_options.view_as(StandardOptions).streaming = True
 # Defining our pipeline and its steps
        with beam.Pipeline(options=pipeline_options) as p:
