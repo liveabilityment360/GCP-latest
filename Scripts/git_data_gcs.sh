@@ -1,3 +1,3 @@
 #!/bin/bash
-
-gsutil cp 'raw_pe_data.csv' gs://finfo-2022
+cd
+gsutil cp 'Data/ raw_pe_data.csv' gs://finfo-2022
