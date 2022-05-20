@@ -14,7 +14,7 @@ logging.getLogger().setLevel(logging.INFO)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/itproject2022bootcamp/gcp-project-346311-bf82119ae708.json"
 INPUT_SUBSCRIPTION = "projects/gcp-project-346311/subscriptions/priv-equity-sub"
 BIGQUERY_TABLE = "gcp-project-346311:private_equity.test_priv_equi"
-BIGQUERY_SCHEMA ="timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,country:STRING,state:STRING,city:STRING,continent:STRING,industry:STRING,sub_industry:STRING,client_focus:STRING,business_model:STRING,company_status:STRING,round:STRING,amount_raised:INTEGER,currency:STRING,date:STRING,quarter:STRING,Month:STRING,Year:INTEGER,investor_types:STRING,investor_name:STRING,company_valuation_usd:STRING,valuation_date:STRING"
+BIGQUERY_SCHEMA ="timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,country:STRING,state:STRING,city:STRING,continent:STRING,industry:STRING,sub_industry:STRING,client_focus:STRING,business_model:STRING,company_status:STRING,round:STRING,amount_raised:STRING,currency:STRING,date:STRING,quarter:STRING,Month:STRING,Year:STRING,investor_types:STRING,investor_name:STRING,company_valuation_usd:STRING,valuation_date:STRING"
 
 #BIGQUERY_SCHEMA = "id:NUMERIC,ticker:STRING,title:STRING,category:STRING,content:STRING,release_date:DATE,provider:STRING,url:STRING,article_id:NUMERIC"
 #class Split(beam.DoFn):
@@ -53,8 +53,8 @@ def Split(row):
             'valuation_date':element[22],
 
         }
-        print("in split")
-        print (row)
+  #      print("in split")
+   #     print (row)
         return row
 class CustomParsing(beam.DoFn):
     # Custom ParallelDo class to apply a custom transformation
@@ -76,7 +76,7 @@ class CustomParsing(beam.DoFn):
         #print(element)
         element=element.decode('utf-8').split(",")
   #      element=element.decode('utf-8')
-        print("element is", element)
+      #  print("element is", element)
 #        reader = csv.DictReader(io.StringIO(element))
  #       json_data = json.dumps(list(reader))
        # element = [i.split() for i in element]
@@ -110,8 +110,8 @@ class CustomParsing(beam.DoFn):
             'valuation_date':element[22],
 
         }
-        print("in split")
-        print (type(row))
+    #    print("in split")
+     #   print (type(row))
        # element=element.decode('utf-8').split(",")
 
         yield(row)
@@ -141,7 +141,12 @@ def run():
                            )
        known_args, pipeline_args = parser.parse_known_args()
   # Creating pipeline options
-       pipeline_options = PipelineOptions(pipeline_args,runner='DirectRunner')
+       pipeline_options = PipelineOptions(pipeline_args,
+    runner='DataflowRunner',
+    project='gcp-project-346311',
+    job_name='finfo-pbsb-bq',
+    temp_location='gs://finfo-2022/temp',
+    region='us-central1')
        pipeline_options.view_as(StandardOptions).streaming = True
 # Defining our pipeline and its steps
        with beam.Pipeline(options=pipeline_options) as p:
