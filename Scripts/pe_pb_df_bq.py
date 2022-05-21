@@ -100,14 +100,14 @@ class CustomParsing(beam.DoFn):
             'round':element[12],
             'amount_raised':element[13],
             'currency':element[14],
-            'date':element[15],
+            'date':datetime.strptime(element[15],'%yyyy-%mm-%dd'),
             'quarter':element[16],
             'Month':element[17],
             'Year':element[18],
             'investor_types':element[19],
             'investor_name':element[20],
             'company_valuation_usd':element[21],
-            'valuation_date':element[22],
+            'valuation_date':datetime.strptime(element[22],'%yyyy-%mm-%dd'),
 
         }
     #    print("in split")
