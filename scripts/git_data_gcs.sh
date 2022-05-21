@@ -1,3 +1,3 @@
 #!/bin/bash
 cd -
-gsutil cp 'Data/raw_pe_data.csv' gs://finfo-2022/pe_data
+gsutil cp 'data/raw_pe_data.csv' gs://private-equity/pe_data
