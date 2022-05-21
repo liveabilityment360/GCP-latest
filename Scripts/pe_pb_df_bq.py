@@ -144,7 +144,7 @@ def run():
        pipeline_options = PipelineOptions(pipeline_args,
     runner='DataflowRunner',
     project='gcp-project-346311',
-    job_name='finfo-pbsb-bq-df',
+    job_name='pbsb-bq-df',
     temp_location='gs://finfo-2022/temp',
     region='australia-southeast2')
        pipeline_options.view_as(StandardOptions).streaming = True
