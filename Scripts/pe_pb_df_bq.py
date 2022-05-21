@@ -5,6 +5,7 @@ import csv
 import io
 import logging
 import apache_beam as beam
+from datetime import datetime
 from apache_beam.options.pipeline_options import PipelineOptions, StandardOptions
 
 logging.basicConfig(level=logging.INFO)
