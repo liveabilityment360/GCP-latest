@@ -11,7 +11,7 @@ from google.cloud import pubsub
 from csv import reader
 from google.cloud import storage
 dir = os.getcwd()
-bucket_name='gs://finfo-2022/pe_data/raw_pe_data.csv'
+bucket_name='gs://private-equity/pe_data/raw_pe_data.csv'
 os.system('gsutil cp '+ bucket_name  +' '+ dir)
 data_file = os.path.join(dir,'raw_pe_data.csv')
 
@@ -64,7 +64,7 @@ def simulate(topic, ifp, firstObsTime, programStart, speedFactor):
               logging.info('Sleeping {} seconds'.format(to_sleep_secs))
               time.sleep(to_sleep_secs)
          topublish.append(event_data)
-        HEAD
+      #  HEAD
       # print(event_data)
 #=======
     #   print(event_data)
