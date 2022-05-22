@@ -10,7 +10,6 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger().setLevel(logging.INFO)
 
 # Service account key path
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gcp-project-346311-d3654ac78bd7.json"
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/itproject2022bootcamp/gcp-project-346311-d3654ac78bd7.json"
 INPUT_SUBSCRIPTION = "projects/gcp-project-346311/subscriptions/priv-equity-sub"
 BIGQUERY_TABLE = "gcp-project-346311:private_equity.test_priv_equi"
@@ -24,12 +23,6 @@ BIGQUERY_SCHEMA ="timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,co
         return "beam:transforms:custom_parsing:custom_v0", None
     def process(self,element:bytes, window=beam.DoFn.WindowParam):
       # Simple processing function to parse the data.
-      #  For additional params see:
-      # https://beam.apache.org/releases/pydoc/2.7.0/apache_beam.transforms.core.html#apache_beam.transforms.core.DoFn
-      # print("<printing element>")
-      #print(str(element))
-    #  parsed=json.loads(element.decode("utf-8"))
-      # print(str(parsed))
         element=element.decode('utf-8').split(",")
         row= {
             'timestamp': element[0],
@@ -79,7 +72,7 @@ BIGQUERY_SCHEMA ="timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,co
                           runner='DataflowRunner',
                           project='gcp-project-346311',
                           job_name='finfo-pbsb-bq-df',
-                          temp_location='gs://finfo-2022/temp',
+                          temp_location='gs://private_equity/temp',
                           region='australia-southeast2')
        pipeline_options.view_as(StandardOptions).streaming = True
 # Defining our pipeline and its steps
