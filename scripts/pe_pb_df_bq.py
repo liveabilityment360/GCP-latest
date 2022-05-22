@@ -16,7 +16,7 @@ BIGQUERY_TABLE = "gcp-project-346311:private_equity.test_priv_equi"
 BIGQUERY_SCHEMA ="timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,country:STRING,state:STRING,city:STRING,continent:STRING,industry:STRING,sub_industry:STRING,client_focus:STRING,business_model:STRING,company_status:STRING,round:STRING,amount_raised:STRING,currency:STRING,date:STRING,quarter:STRING,Month:STRING,Year:STRING,investor_types:STRING,investor_name:STRING,company_valuation_usd:STRING,valuation_date:STRING"
 #BIGQUERY_SCHEMA = "id:NUMERIC,ticker:STRING,title:STRING,category:STRING,content:STRING,release_date:DATE,provider:STRING,url:STRING,article_id:NUMERIC"
 
-  class CustomParsing(beam.DoFn):
+ class CustomParsing(beam.DoFn):
     # Custom ParallelDo class to apply a custom transformation
     def to_runner_api_parameter(self, unused_context):
       # Not very relevant, returns a URN (uniform resource name) and the payload
@@ -49,8 +49,8 @@ BIGQUERY_SCHEMA ="timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,co
             'company_valuation_usd':element[21],
             'valuation_date':element[22],
         }
-       yield(row)
- def run():
+        yield(row)
+def run():
       # Parsing arguments
        parser = argparse.ArgumentParser()
        parser.add_argument(
