@@ -55,8 +55,8 @@ resource "google_compute_instance" "default" {
   }
 }
 
-resource "google_storage_bucket" "majestic-lodge-342902-finfo-trial" {
-  name          = "majestic-lodge-342902-finfo-trial"
+resource "google_storage_bucket" "private-equityl" {
+  name          = "private-equity"
   location      = "US"
   force_destroy = true
     }
@@ -65,7 +65,7 @@ module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
   version = "3.2.0"
 
-  topic      = "my_topic"
+  topic      = "priv-equity"
   project_id = "majestic-lodge-342902"
 
 pull_subscriptions = [
