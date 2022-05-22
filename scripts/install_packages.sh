@@ -4,7 +4,8 @@
    first Update the package lists on your instance, install the Git,
    Google cloud then pub sub and Set up the Apache2 HTTP Server.
    Install
-   
+ 
+  
 sudo apt-get update 
 sudo apt-get install git-core
 sudo apt-get install apache2 php7.0
