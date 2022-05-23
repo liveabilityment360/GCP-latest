@@ -29,8 +29,6 @@ def publish(publisher, topic, events):
 
           publisher.publish(topic,event_data)
 def get_timestamp(row):
-    ## convert from bytes to str
-    #line = line.decode('utf-8')
      # look at first field of row
      line= ','.join([str(item)for item in row])
      timestamp = line.split(',')[0]
@@ -64,21 +62,10 @@ def simulate(topic, ifp, firstObsTime, programStart, speedFactor):
               logging.info('Sleeping {} seconds'.format(to_sleep_secs))
               time.sleep(to_sleep_secs)
          topublish.append(event_data)
-      #  HEAD
-      # print(event_data)
-#=======
-    #   print(event_data)
-#>>>>>>> fdb923a5671c7ccd25ee30bd1281d21039ff4f62
+      
 
    # left-over records; notify again
        publish(publisher, topic, topublish)
-#def peek_timestamp(ifp):
-      # peek ahead to next line, get timestamp and go back
- #     pos = ifp.tell()
-      #line = ifp#.
-    #  readline()
- #     ifp.seek(pos)
-     # return get_timestamp(line)
 #speedFactor=60
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Send sensor data to Cloud Pub/Sub in small groups, simulating real-time behavior')
@@ -90,13 +77,6 @@ if __name__ == '__main__':
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 publisher = pubsub.PublisherClient()
 event_type = publisher.topic_path(args.project,TOPIC)
-#try:
- #   publisher.get_topic(event_type)
-  #  logging.info('Reusing pub/sub topic {}'.format(TOPIC))
-#except:
- #   publisher.create_topic(event_type)
-  #  logging.info('Creating pub/sub topic {}'.format(TOPIC))
-
     # notify about each line in the input file
 programStartTime = datetime.datetime.utcnow()
 f_data = open(data_file)
@@ -115,12 +95,5 @@ for row in reader:
         else:
             break
         n=n+1
-       # print(firstObsTime)
-
-
-#with gzip.open(INPUT, 'rb') as ifp:
-#header = ifp.readline()  # skip header
-        #firstObsTime = get_timestamp(row)
-       # print (type(firstObsTime))
-        #logging.info('Sending sensor data from {}'.format(firstObsTime))
+       
 simulate(event_type, reader, firstObsTime, programStartTime, args.speedFactor)
