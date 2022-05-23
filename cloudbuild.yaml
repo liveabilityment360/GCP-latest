@@ -46,9 +46,8 @@ steps:
   - |
       if [ -d "terraform/" ]; then
         cd terraform
-        #        terraform plan
         echo "*************************************************"
-        echo "*************** TERRAFOM PLAN ******************"
+        echo "*************** TERRAFORM PLAN ******************"
         echo "*************************************************"
         terraform plan 
       fi
