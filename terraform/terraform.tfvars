@@ -1,1 +1,1 @@
-project="gcp-project-346311"
+gcp_project="gcp-project-346311"
