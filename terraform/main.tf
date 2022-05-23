@@ -1,7 +1,7 @@
 
 module "gcloud" {
   source  = "terraform-google-modules/gcloud/google"
-  version = "~>3.1.1"
+  version = "~>1.0.0"
 }
 
 variable "gcp_region" {
