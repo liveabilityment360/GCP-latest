@@ -19,9 +19,11 @@ steps:
   entrypoint: 'sh'
   args:
   - '-c'
-  - | echo "***********************"
-      echo "$BRANCH_NAME"
-      echo "***********************"
+  - | 
+     echo "***********************"
+     echo "$BRANCH_NAME"
+     echo "***********************"
+
 - id: 'tf init'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
