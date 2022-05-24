@@ -2,7 +2,7 @@
 steps:
 - id: 'branch name'
   name: 'alpine'
-  entrypoint: 'bash'
+  entrypoint: 'sh'
   args:
   - '-c'
   - | 
@@ -11,7 +11,7 @@ steps:
      echo "***********************"
 - id: 'ddl-run'
   name: 'ddl-run'
-  entrypoint: 'bash'
+  entrypoint: 'sh'
   args:
   - '-c'
   - |
@@ -20,7 +20,7 @@ steps:
         echo "*************** DDL execution ******************"
         echo "******* At environment: ********"
         echo "*************************************************"
-        bash "create_table.sh"
+        "create_table.sh"
       fi
  
 options:
