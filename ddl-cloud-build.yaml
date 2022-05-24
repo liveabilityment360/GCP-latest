@@ -20,7 +20,7 @@ steps:
         echo "*************** DDL execution ******************"
         echo "******* At environment: ********"
         echo "*************************************************"
-        dbt run
+        bash "create.sh"
       fi
  
 options:
