@@ -1,1 +1,27 @@
 
+steps:
+- id: 'branch name'
+  name: 'alpine'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - | 
+     echo "***********************"
+     echo "$BRANCH_NAME"
+     echo "***********************"
+- id: 'ddl-run'
+  name: 'alpine'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+      if [ -d "ddl/" ]; then
+        cd ddl
+        echo "*************** DDL execution ******************"
+        echo "******* At environment: ********"
+        echo "*************************************************"
+        dbt run
+      fi
+ 
+options:
+ logging: CLOUD_LOGGING_ONLY
