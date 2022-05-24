@@ -1,6 +1,5 @@
 import time
 import csv
-import kaggle
 import json
 import os
 import requests as rq
