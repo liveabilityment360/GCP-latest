@@ -10,9 +10,9 @@ steps:
      echo "$BRANCH_NAME"
      echo "***********************"
 - id: 'ddl-run'
-  name: 'bash'
+  name: 'gcloud'
   entrypoint: 'sh'
-  args:['create_table.sh','$PROJECT_ID']
+  args:
   - '-c'
   - |
       if [ -d "ddl/" ]; then
