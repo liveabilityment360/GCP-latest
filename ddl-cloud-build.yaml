@@ -25,4 +25,4 @@ steps:
  
 options:
  logging: CLOUD_LOGGING_ONLY
- docker run -P port:port ddl-run
+ 
