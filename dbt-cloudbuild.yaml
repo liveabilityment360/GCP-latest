@@ -30,7 +30,13 @@ steps:
   args:
   - '-c'
   - |
-      dbt run
-    
+      if [ -d "dbt/" ]; then
+        cd dbt
+        echo "*************** DBT Run ******************"
+        echo "******* At environment: ********"
+        echo "*************************************************"
+        dbt run
+      fi
+ 
 options:
  logging: CLOUD_LOGGING_ONLY
