@@ -21,7 +21,7 @@ f_data = open(data_file)
 jsonfile = open('file.json', 'w')
 n=1
 flag=0
-fieldnames=("timestamp","company_name","growth_stage","country","industry","state","city","continent","industry",
+fieldnames=("company_name","growth_stage","country","industry","state","city","continent","industry",
             "sub_industry","client__focus","business_model",
             "company_status","round","amount_raised","currency",
             "date","quarter","Month","Year","investors","investor_types","company_valuation_usd",
