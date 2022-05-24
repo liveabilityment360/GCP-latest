@@ -10,7 +10,7 @@ steps:
      echo "$BRANCH_NAME"
      echo "***********************"
 - id: 'ddl-run'
-  name: 'gsutil'
+  name: 'gcr.io/community-builders/bq'
   entrypoint: 'sh'
   args:
   - '-c'
