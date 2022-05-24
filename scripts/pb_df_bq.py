@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger().setLevel(logging.INFO)
 
 # Service account key path
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/itproject2022bootcamp/gcp-project-346311-bf82119ae708.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/itproject2022bootcamp/gcp-project-346311-c1a147614e5f.json"
 INPUT_SUBSCRIPTION = "projects/gcp-project-346311/subscriptions/priv-equity-sub"
 BIGQUERY_TABLE = "gcp-project-346311:private_equity.test2_priv_equi"
 BIGQUERY_SCHEMA = "timestamp:TIMESTAMP,company_name:STRING,growth_stage:STRING,country:STRING,state:STRING,city:STRING,continent:STRING,industry:STRING,sub_industry:STRING,client_focus:STRING,business_model:STRING,company_status:STRING,round:STRING,amount_raised:INTEGER,currency:STRING,date:DATE,quarter:STRING,Month:STRING,Year:INTEGER,investor_types:STRING,investor_name:STRING,company_valuation_usd:STRING,valuation_date:DATE"
