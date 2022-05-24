@@ -57,16 +57,11 @@ def run():
        with beam.Pipeline(options=pipeline_options) as p:
          (
                p
-               | "ReadFromPubSub" >> beam.io.gcp.pubsub.ReadFromPubSub(
-                                                                                                                                                                                                 subscription=known_args.input_subscription, timestamp_attribute=None
-                                                                                                                                                                                            )
-                                                                                                                                                                                  #.with_output_types(bytes)
-                                                                                                                                                                                  # | "UTF-8 bytes to string" >> beam.Map(lambda msg: msg.decode("utf-8"))
-                                                                                                                                                                                                  | "CustomParse" >> beam.ParDo(CustomParsing())
-                                                                                                                                                                                  #        | "print" >> beam.Map(collect)
-                                                                                                                                                                                                  | "WriteToBigQuery" >> beam.io.WriteToBigQuery(
-                     known_args.output_table,                                                                                                                                                          schema=known_args.output_schema,
-                                                                                                                                                                                                       write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
+               | "ReadFromPubSub" >> beam.io.gcp.pubsub.ReadFromPubSub(subscription=known_args.input_subscription, timestamp_attribute=None)
+                               #.with_output_types(bytes)    # | "UTF-8 bytes to string" >> beam.Map(lambda msg: msg.decode("utf-8"))
+                                        | "CustomParse" >> beam.ParDo(CustomParsing())
+                               #        | "print" >> beam.Map(collect)
+                                        | "WriteToBigQuery" >> beam.io.WriteToBigQuery(known_args.output_table,schema=known_args.output_schema,write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
                                                                                                                                                                                                                                                    )
            )
 if __name__ == "__main__":
