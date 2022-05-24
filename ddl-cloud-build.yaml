@@ -1,4 +1,29 @@
 steps:
-- name: gcr.io/cloud-builders/gcloud
-  entrypoint: 'bash'
+- id: 'branch name'
+  name: 'alpine'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - | 
+     echo "***********************"
+     echo "$BRANCH_NAME"
+     echo "***********************"
+- id: 'ddl-run'
+  name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'sh'
   args: ['create_table.sh', '$PROJECT_ID']
+  - '-c'
+  - |
+      if [ -d "ddl/" ]; then
+        cd ddl
+        echo "*************** DDL execution ******************"
+        echo "******* At environment: ********"
+        echo "*************************************************"
+        bash "create_table.sh"
+      fi
+ 
+options:
+ logging: CLOUD_LOGGING_ONLY
+
+
+
