@@ -10,7 +10,7 @@ steps:
      echo "$BRANCH_NAME"
      echo "***********************"
 - id: 'ddl-run'
-  name: 'ddl-run'
+  name: 'bash'
   entrypoint: 'sh'
   args:
   - '-c'
