@@ -11,7 +11,7 @@ steps:
 - id: 'ddl-run'
   name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'sh'
-  args: ['create_table.sh', '$PROJECT_ID']
+  args: 
   - '-c'
   - |
       if [ -d "ddl/" ]; then
