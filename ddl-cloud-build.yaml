@@ -12,7 +12,7 @@ steps:
 - id: 'ddl-run'
   name: 'bash'
   entrypoint: 'sh'
-  args:
+  args:['create_table.sh','$PROJECT_ID']
   - '-c'
   - |
       if [ -d "ddl/" ]; then
