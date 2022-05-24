@@ -20,7 +20,7 @@ steps:
         echo "*************** DDL execution ******************"
         echo "******* At environment: ********"
         echo "*************************************************"
-        bash "create.sh"
+        bash "create_table.sh"
       fi
  
 options:
