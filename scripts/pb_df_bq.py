@@ -50,9 +50,12 @@ def run():
        default=BIGQUERY_SCHEMA,
                            )
        known_args, pipeline_args = parser.parse_known_args()
-  # Creating pipeline options
-       pipeline_options = PipelineOptions(pipeline_args)
+       # Creating pipeline options
+       pipeline_options = PipelineOptions(pipeline_args,runner='DataflowRunner',project='gcp-project-346311',job_name='finfo-pbsb-bq-df',temp_location='gs://private_equity/temp', region='australia-southeast2')
        pipeline_options.view_as(StandardOptions).streaming = True
+  # Creating pipeline options
+    #   pipeline_options = PipelineOptions(pipeline_args)
+     #  pipeline_options.view_as(StandardOptions).streaming = True
 # Defining our pipeline and its steps
        with beam.Pipeline(options=pipeline_options) as p:
          (
@@ -61,8 +64,8 @@ def run():
                                #.with_output_types(bytes)    # | "UTF-8 bytes to string" >> beam.Map(lambda msg: msg.decode("utf-8"))
                                         | "CustomParse" >> beam.ParDo(CustomParsing())
                                #        | "print" >> beam.Map(collect)
-                                        | "WriteToBigQuery" >> beam.io.WriteToBigQuery(known_args.output_table,schema=known_args.output_schema,write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
-                                                                                                                                                                                                                                                   )
+                                        | "WriteToBigQuery" >> beam.io.WriteToBigQuery(known_args.output_table,schema=known_args.output_schema,write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,)
+                                                                                                                                                                                                                                                   
            )
 if __name__ == "__main__":
     run()
