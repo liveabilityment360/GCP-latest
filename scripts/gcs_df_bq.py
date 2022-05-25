@@ -5,6 +5,7 @@ from apache_beam.options.pipeline_options import PipelineOptions, StandardOption
 import json
 import os
 import requests as rq
+import apache_beam as beam
 from google.cloud import pubsub_v1
 from csv import reader
 from google.cloud import storage
