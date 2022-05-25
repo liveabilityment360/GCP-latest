@@ -67,7 +67,7 @@ def run():
                            )
        known_args, pipeline_args = parser.parse_known_args()
        # Creating pipeline options
-       pipeline_options = PipelineOptions(pipeline_args,runner='DataflowRunner',project='gcp-project-346311',job_name='pbsb-df-bq',temp_location='gs://private_equity/temp', region='australia-southeast2')
+       pipeline_options = PipelineOptions(pipeline_args,runner='DataflowRunner',project='gcp-project-346311',job_name='gcs-df-bq',temp_location='gs://private_equity/temp', region='australia-southeast2')
       # pipeline_options.view_as(StandardOptions).streaming = True
   # Creating pipeline options
     #   pipeline_options = PipelineOptions(pipeline_args)
