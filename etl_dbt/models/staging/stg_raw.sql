@@ -1,1 +1,1 @@
-select * from `gcp-project-346311.private_equity.raw_test`
+select * from `cloud-build-test-351109.private_equity.raw_test`
