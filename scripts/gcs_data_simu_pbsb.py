@@ -80,7 +80,7 @@ event_type = publisher.topic_path(args.project,TOPIC)
     # notify about each line in the input file
 programStartTime = datetime.datetime.utcnow()
 f_data = open(data_file)
-fieldnames=("date","company_name","growth_stage","country","industry",
+fieldnames=("timestamp","date","company_name","growth_stage","country","industry",
             "sub_industry","client__focus","business_model",
             "company_status","round","amount_raised","currency",
             "date","quarter","Month","Year","investors","investor_types","company_valuation_usd",
