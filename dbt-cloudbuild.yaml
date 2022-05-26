@@ -21,6 +21,12 @@ steps:
   args:
     - '-c'
     - |-
+       if [ -d "etl_dbt/" ]; then
+        cd etl_dbt
+        echo "*************** DBT RUN ******************"
+        echo "******* At environment: ********"
+        echo "*************************************************"
+       fi
        dbt deps --profiles-dir .
        if [[ $? == 1 ]]; then
         echo '1'
