@@ -3,7 +3,7 @@ cd
 # copying raw data and dim_date csv files in GCS bucket.
 gsutil cp 'finfo/data/raw_pe_tdata.csv' gs://private_equity
 gsutil cp 'finfo/data/dim_date.csv' gs://private_equity
-
+gsutil cp 'finfo/data/dbtk.json' gs://private_equity
 # loading dim_date into date dimesion table.
   
     bq load \
