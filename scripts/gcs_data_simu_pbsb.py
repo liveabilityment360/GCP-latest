@@ -81,9 +81,9 @@ event_type = publisher.topic_path(args.project,TOPIC)
 programStartTime = datetime.datetime.utcnow()
 f_data = open(data_file)
 fieldnames=("timestamp","date","company_name","growth_stage","country","industry",
-            "sub_industry","client__focus","business_model",
+            "sub_industry","client_focus","business_model",
             "company_status","round","amount_raised","currency",
-            "date","quarter","Month","Year","investors","investor_types","company_valuation_usd",
+            "date","quarter","month","year","investors","investor_types","company_valuation_usd",
             "valuation_date")
 n=0
 reader = csv.reader(f_data)
