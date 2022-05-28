@@ -1,1 +1,1 @@
-gcp_project="cloud-build-test-351109"
+gcp_project="gcp-project-346311"
