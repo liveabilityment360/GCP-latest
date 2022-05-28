@@ -67,7 +67,7 @@ def run():
                            )
        known_args, pipeline_args = parser.parse_known_args()
   # Creating pipeline options
-       pipeline_options = PipelineOptions(pipeline_args,runner='DataflowRunner',project='gcp-project-346311',job_name='finfo-pbsb-bq-df',temp_location='gs://private_equity/temp', region='australia-southeast2')
+       pipeline_options = PipelineOptions(pipeline_args,runner='DataflowRunner',project='gcp-project-346311',job_name='finfo-pbsb-bq-df',temp_location='gs://private_equity', region='australia-southeast2')
        pipeline_options.view_as(StandardOptions).streaming = True
 # Defining our pipeline and its steps
        with beam.Pipeline(options=pipeline_options) as p:
