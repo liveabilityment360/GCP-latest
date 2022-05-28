@@ -1,5 +1,6 @@
 FINFO_dbt:
-outputs:
+ target: dev
+ outputs:
   dev:
     dataset: 'private_equity'
     fixed_retries: 1
