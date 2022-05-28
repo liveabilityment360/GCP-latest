@@ -4,7 +4,7 @@ FINFO_dbt:
   dev:
     dataset: 'private_equity'
     fixed_retries: 1
-    keyfile: 'gs://private_equity/dbtk.json'
+    keyfile: '/home/itproject2022bootcamp/gcp-project-346311-e4adcf647b25.json'
     method: service-account
     priority: interactive
     project: 'gcp-project-346311'
