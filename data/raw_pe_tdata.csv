@@ -1,4 +1,4 @@
-timestamp,company_name,growth_stage,country,state,city,continent,industry,sub_industry,client_ focus,business_model,company_status,round,amount_raised,currency,date,quarter,Month,Year,investor_types,investor_name,company_valuation_usd,valuation_date
+timestamp,company_name,growth_stage,country,state,city,continent,industry,sub_industry,client_focus,business_model,company_status,round,amount_raised,currency,date,quarter,month,year,investor_types,investor_name,company_valuation_usd,valuation_date
 2020-05-13 02:30:45,Choerodon,seed stage,Italy,Tuscany,Sienna,Europe,energy,wealth management;financial management solutions,business,,acquired,ACQUISITION,150000,USD,2021-01-01,QTR 3,Jan,2021,corporate,Zhenzhi Technology,,
 2020-05-14 02:30:45,Mason & Associates,seed stage,Italy,Modena,Rubiera,Europe,energy,real estate services;construction,business,,acquired,ACQUISITION,150000,USD,2021-08-04,QTR 4,April,2021,corporate,Zhenzhi Technology,,
 2020-05-15 02:30:45,Taylors Wines,seed stage,Italy,Naples,Napoli,Europe,energy,payments;banking,business,,acquired,ACQUISITION,150000,USD,2020-08-10,QTR 2,october,2020,corporate,Zhenzhi Technology,,
