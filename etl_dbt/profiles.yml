@@ -1,12 +1,12 @@
 FINFO_dbt:
-	outputs:
-		dev:
-			dataset: 'private_equity'
-			fixed_retries: 1
-			keyfile: 'gs://private-equity/gcp-project-346311-e4adcf647b25.json'
-			method: service-account
-			priority: interactive
-			project: 'gcp-project-346311'
-			threads: 1
-			timeout_seconds: 299
-			type: bigquery
+outputs:
+  dev:
+    dataset: 'private_equity'
+    fixed_retries: 1
+    keyfile: 'gs://private-equity/gcp-project-346311-e4adcf647b25.json'
+    method: service-account
+    priority: interactive
+    project: 'gcp-project-346311'
+    threads: 1
+    timeout_seconds: 299
+    type: bigquery
