@@ -10,7 +10,7 @@ gsutil cp 'finfo/data/dbtk.json' gs://private_equity
  --autodetect \
     --source_format=CSV \
     private_equity.dim_date\
-    gs://private_equity/pe_data_dim_date.csv
+    gs://private_equity/dim_date.csv
 
 # copying scripts for cloud composer in dags folder
 #gsutil cp 'finfo/scripts/git_data_gcs.sh' gs://australia-southeast1-compos-ca616f74-bucket/dags
