@@ -4,8 +4,8 @@ FINFO_dbt:
   dev:
     dataset: 'private_equity'
     fixed_retries: 1
-    keyfile: '/home/itproject2022bootcamp/gcp-project-346311-e4adcf647b25.json'
-    method: service-account
+   # keyfile: '/home/itproject2022bootcamp/gcp-project-346311-e4adcf647b25.json'
+    method: oauth
     priority: interactive
     project: 'gcp-project-346311'
     threads: 1
