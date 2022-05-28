@@ -41,7 +41,7 @@ resource "null_resource" "enable_service_usage_api" {
   
   # Create a single Compute Engine instance
 resource "google_compute_instance" "default" {
- name         = "finfo-instance"
+ name         = "finfo-instance1"
   machine_type = "e2-medium"
   zone         =  var.gcp_zone
   tags         = ["ssh"]
@@ -79,7 +79,7 @@ module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
   version = "3.2.0"
 
-  topic      = "priv-equity"
+  topic      = "priv-equity1"
   project_id = var.gcp_project
 
 pull_subscriptions = [
