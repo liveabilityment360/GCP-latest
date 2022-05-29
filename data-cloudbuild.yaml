@@ -27,6 +27,6 @@ steps:
         echo "******* At environment: ********"
         echo "*************************************************"
        fi
-       bash git_data_load.sh ${DAGS_FOLDER}
+       bash git_data_load.sh ${_DAGS_FOLDER}
       
 
