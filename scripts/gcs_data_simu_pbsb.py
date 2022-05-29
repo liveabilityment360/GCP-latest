@@ -11,7 +11,7 @@ from google.cloud import pubsub
 from csv import reader
 from google.cloud import storage
 dir = os.getcwd()
-bucket_name='gs://private_equity/raw_pe_tdata.csv'
+bucket_name='gs://gcp-project-346311/raw_pe_tdata.csv'
 os.system('gsutil cp '+ bucket_name  +' '+ dir)
 data_file = os.path.join(dir,'raw_pe_tdata.csv')
 
