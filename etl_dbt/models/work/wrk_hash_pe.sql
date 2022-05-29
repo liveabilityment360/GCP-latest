@@ -9,7 +9,7 @@ with pe_hash_dataset as (
     ,continent
     ,industry
     ,sub_industry
-    ,client__focus
+    ,client_focus
     ,business_model
     ,company_status
     ,round
