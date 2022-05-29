@@ -4,7 +4,7 @@ with company as (
         ,growth_stage
         ,industry
         ,sub_industry
-        ,client__focus
+        ,client_focus
         ,business_model
         ,company_status
         ,company_valuation
