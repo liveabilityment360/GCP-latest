@@ -11,7 +11,6 @@ from google.cloud import pubsub
 from csv import reader
 from google.cloud import storage
 dir = os.getcwd()
-print(f"current dir is {dir}")
 bucket_name='gs://gcp-project-346311/raw_pe_tdata.csv'
 os.system('gsutil cp '+ bucket_name  +' '+ dir)
 data_file = os.path.join(dir,'raw_pe_tdata.csv')
@@ -69,22 +68,22 @@ def simulate(topic, ifp, firstObsTime, programStart, speedFactor):
        publish(publisher, topic, topublish)
 #speedFactor=60
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Send sensor data to Cloud Pub/Sub in small groups, simulating real-time behavior')
-    parser.add_argument('--speedFactor', help='Example: 60 implies 1 hour of data sent to Cloud Pub/Sub in 1 minute', required=True, type=float)
-    parser.add_argument('--project', help='Example: --project $DEVSHELL_PROJECT_ID', required=True)
-    args = parser.parse_args()
-
+    #parser = argparse.ArgumentParser(description='Send sensor data to Cloud Pub/Sub in small groups, simulating real-time behavior')
+    #parser.add_argument('--speedFactor', help='Example: 60 implies 1 hour of data sent to Cloud Pub/Sub in 1 minute', required=True, type=float)
+    #parser.add_argument('--project', help='Example: --project $DEVSHELL_PROJECT_ID', required=True)
+    #args = parser.parse_args()
+    print("in main")
     # create Pub/Sub notification topic
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 publisher = pubsub.PublisherClient()
-event_type = publisher.topic_path(args.project,TOPIC)
+event_type = publisher.topic_path("gcp-project-346311",TOPIC)
     # notify about each line in the input file
 programStartTime = datetime.datetime.utcnow()
 f_data = open(data_file)
 fieldnames=("rec_crt_ts","date","company_name","growth_stage","country","industry",
-            "sub_industry","client_focus","business_model",
+            "sub_industry","client__focus","business_model",
             "company_status","round","amount_raised","currency",
-            "date","quarter","month","year","investors","investor_types","company_valuation_usd",
+            "date","quarter","Month","Year","investors","investor_types","company_valuation_usd",
             "valuation_date")
 n=0
 reader = csv.reader(f_data)
@@ -97,4 +96,5 @@ for row in reader:
             break
         n=n+1
        
-simulate(event_type, reader, firstObsTime, programStartTime, args.speedFactor)
+simulate(event_type, reader, firstObsTime, programStartTime, 20000)
+
