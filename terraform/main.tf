@@ -84,7 +84,7 @@ module "pubsub" {
 
 pull_subscriptions = 
     {
-      name                    = "priv-equity1-sub"                                   // required
+      name                    = "pull"                                   // required
       ack_deadline_seconds    = 20                                                   // optional
       
       max_delivery_attempts   = 5                                                    // optional
