@@ -15,7 +15,7 @@ gsutil cp 'finfo/data/dim_date.csv' gs://${projectid}
     gs://${projectid}/dim_date.csv
 
 # copying scripts for cloud composer in dags folder
-gsutil cp 'finfo/scripts/git_data_gcs.sh'  ${dagpath}
-gsutil cp 'finfo/scripts/gcs_df_bq.py' ${dagpath}/scripts
+gsutil cp 'finfo/scripts/gcs_data_simu_pbsb.py'  ${dagpath}/scripts
+gsutil cp 'finfo/scripts/pe_pb_df_bq.py' ${dagpath}/scripts
 
 
