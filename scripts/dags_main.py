@@ -42,7 +42,8 @@ with models.DAG(
     #)
 
     gcs_data = PythonOperator(
-        task_id="gcs_data",
+        task_id='gcs_data',
+	dag=dag,
         python_callable=gcs_data_simu_pbsb.main,
 
     )
