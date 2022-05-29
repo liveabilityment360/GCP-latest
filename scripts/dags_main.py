@@ -32,21 +32,26 @@ with models.DAG(
     # The interval with which to schedule the DAG
     schedule_interval=datetime.timedelta(days=1),  # Override to match your needs
 ) as dag: 
+	
+	
 
-
-
-    #gcs_data = BashOperator(
-        #task_id="gcs_data",
-        #bash_command="python3 gcs_data_simu_pbsb.py",
-
-    #)
-
-    gcs_data = PythonOperator(
-        task_id='gcs_data',
-	dag=dag,
-        python_callable=gcs_data_simu_pbsb.main,
+    gcs_data = BashOperator(
+        task_id="gcs_data",
+        bash_command="python3 gcs_data_simu_pbsb.py",
 
     )
+
+    gcs_pub_bq = BashOperator(
+        task_id="gcs_pub_bq",
+        bash_command="python3 scripts/pe_pb_df_bq.py --streaming",
+
+    )
+    #gcs_data = PythonOperator(
+        #task_id='gcs_data',
+	#dag=dag,
+        #python_callable=gcs_data_simu_pbsb.main,
+
+    #)
     gcs_data
 	
 
