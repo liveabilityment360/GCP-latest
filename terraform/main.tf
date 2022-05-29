@@ -70,7 +70,7 @@ depends_on = [null_resource.enable_service_usage_api]
 }
 
 resource "google_storage_bucket" "private-equity" {
-  name          = "private-equity"
+  name          = "$(var.gcp_project)-private-equity"
   location      = "US"
   force_destroy = true
     }
