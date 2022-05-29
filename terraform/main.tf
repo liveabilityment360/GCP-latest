@@ -82,9 +82,9 @@ module "pubsub" {
   topic      = "priv-equity1"
   project_id = var.gcp_project
 
-pull_subscriptions = 
+pull_subscriptions = [
     {
-      name                    = "pull"                                   // required
+      name                    = "pull"                                               // required
       ack_deadline_seconds    = 20                                                   // optional
       
       max_delivery_attempts   = 5                                                    // optional
@@ -112,4 +112,3 @@ members = [
 ]
 depends_on = [google_service_account.service_account]
 }
-
