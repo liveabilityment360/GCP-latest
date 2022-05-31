@@ -1,0 +1,5 @@
+{
+    "bucket_path": "gs://gcp-project-346311",
+    "gce_zone": "australia-southeast1-a",
+    "project_id": "gcp-project-346311"
+}
