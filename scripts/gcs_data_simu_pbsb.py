@@ -80,11 +80,9 @@ event_type = publisher.topic_path("gcp-project-346311",TOPIC)
     # notify about each line in the input file
 programStartTime = datetime.datetime.utcnow()
 f_data = open(data_file)
-fieldnames=("rec_crt_ts","date","company_name","growth_stage","country","industry",
-            "sub_industry","client__focus","business_model",
-            "company_status","round","amount_raised","currency",
-            "date","quarter","Month","Year","investors","investor_types","company_valuation_usd",
-            "valuation_date")
+fieldnames=("rec_crt_ts","company_name","growth_stage","country","state","city","continent","industry","sub_industry","client_focus",
+            "business_model","company_status","round","amount_raised","currency","date","quarter","Month","Year","investor_types",
+            "investor_name","company_valuation_usd","valuation_date"")
 n=0
 reader = csv.reader(f_data)
 next(reader)
