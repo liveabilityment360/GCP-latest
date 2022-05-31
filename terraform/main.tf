@@ -42,7 +42,7 @@ resource "null_resource" "enable_service_usage_api" {
 
 resource "google_storage_bucket" "private-equity" {
   name          = var.gcp_project
-  location      = "US"
+  location      = "australia-southeast2"
   force_destroy = true
     }
 
