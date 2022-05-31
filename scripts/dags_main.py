@@ -1,25 +1,24 @@
-# This DAG relies on an Airflow variable
-#https: // airflow.apache.org / docs / apache - airflow / stable / concepts / variables.html
-#* project_id - Google Cloud Project ID to use for the Cloud Dataproc Template.
-
-
 import datetime
 
 from airflow import models
-#from airflow.providers.google.cloud.operators.dataproc import DataprocInstantiateWorkflowTemplateOperator
+from airflow.providers.google.cloud.operators.dataflow import DataflowTemplatedJobStartOperator
 from airflow.utils.dates import days_ago
-from airflow.operators.python_operator import PythonOperator
-from airflow.operators.bash_operator import BashOperator
-from airflow.operators.python_operator import PythonOperator
-from scripts import gcs_data_simu_pbsb 
 
-#project_id = models.Variable.get("gcp-project-346311")
+bucket_path = models.Variable.get("bucket_path")
+project_id = models.Variable.get("project_id")
+gce_zone = models.Variable.get("gce_zone")
 
 
 default_args = {
     # Tell airflow to start one day ago, so that it runs as soon as you upload it
     "start_date": days_ago(1),
-    #"gcp-project-346311": project_id,
+    "dataflow_default_options": {
+        "project": project_id,
+        # Set to your zone
+        "zone": gce_zone,
+        # This is a subfolder for storing temporary files, like the staged pipeline job.
+        "tempLocation": bucket_path + "/tmp/",
+    },
 }
 
 # Define a DAG (directed acyclic graph) of tasks.
@@ -27,31 +26,23 @@ default_args = {
 # DAG object.
 with models.DAG(
     # The id you will see in the DAG airflow page
-    "finfo_dag",
+    "composer_dataflow_dag",
     default_args=default_args,
     # The interval with which to schedule the DAG
     schedule_interval=datetime.timedelta(days=1),  # Override to match your needs
-) as dag: 
-	
-	
+) as dag:
 
-    gcs_data = BashOperator(
-        task_id="gcs_data",
-        bash_command="python3 gcs_data_simu_pbsb.py",
-
+    start_template_job = DataflowTemplatedJobStartOperator(
+        # The task id of your job
+        task_id="dataflow_operator_pbsb_subscription_to_bq",
+        # The name of the template. Below is a list of all the templates you can use.
+        # For versions in non-production environments, use the subfolder 'latest'
+        # https://cloud.google.com/dataflow/docs/guides/templates/provided-batch#gcstexttobigquery
+        template="gs://dataflow-templates/latest/PubSub_Subscription_to_BigQuery",
+        # Use the link above to specify the correct parameters for your template.
+        parameters={
+            "inputSubscription": "projects/" + project_id + "/subscriptions/priv-equity-sub",
+            "outputTableSpec": project_id + ":private_equity.raw_priv_equi",
+            "outputDeadletterTable": project_id + ":private_equity.error_raw_priv_equi",
+        },
     )
-
-    gcs_pub_bq = BashOperator(
-        task_id="gcs_pub_bq",
-        bash_command="python3 scripts/pe_pb_df_bq.py --streaming",
-
-    )
-    #gcs_data = PythonOperator(
-        #task_id='gcs_data',
-	#dag=dag,
-        #python_callable=gcs_data_simu_pbsb.main,
-
-    #)
-    gcs_data
-	
-
