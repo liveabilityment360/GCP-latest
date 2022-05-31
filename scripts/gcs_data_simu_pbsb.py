@@ -28,13 +28,11 @@ def publish(publisher, topic, events):
           event_data = event_data.encode('utf-8')
 
           publisher.publish(topic,event_data)
+
 def get_timestamp(row):
      # look at first field of row
-     line= ','.join([str(item)for item in row])
-     timestamp = line.split(',')[0]
-     #return(timestamp)
+     timestamp = row["rec_crt_ts"]
      return datetime.datetime.strptime(timestamp,TIME_FORMAT)
-
 
 def simulate(topic, ifp, firstObsTime, programStart, speedFactor):
        # sleep computation
@@ -46,7 +44,8 @@ def simulate(topic, ifp, firstObsTime, programStart, speedFactor):
 
        topublish = list()
        for line in ifp:
-         event_data =','.join([str(item)for item in line])
+         event_data = json.dumps(line)
+         print(event_data)
          # entire line of input CSV is the message
          obs_time = get_timestamp(line) # from first column
 
@@ -84,7 +83,7 @@ fieldnames=("rec_crt_ts","company_name","growth_stage","country","state","city",
             "business_model","company_status","round","amount_raised","currency","date","quarter","Month","Year","investor_types",
             "investor_name","company_valuation_usd","valuation_date")
 n=0
-reader = csv.reader(f_data)
+reader = csv.DictReader(f_data, fieldnames)
 next(reader)
 for row in reader:
         if(n<1):
