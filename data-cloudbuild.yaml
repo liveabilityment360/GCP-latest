@@ -15,7 +15,7 @@
 
 # gcloud builds submit --config=cloudbuild.yaml .
 steps:
-- id: '1 Run dbt'
+- id: '1 Run dataload'
   name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
   args:
