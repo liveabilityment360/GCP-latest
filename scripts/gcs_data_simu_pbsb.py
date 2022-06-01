@@ -45,7 +45,7 @@ def simulate(topic, ifp, firstObsTime, programStart, speedFactor):
        topublish = list()
        for line in ifp:
          event_data = json.dumps(line)
-         print(event_data)
+         #print(event_data)
          # entire line of input CSV is the message
          obs_time = get_timestamp(line) # from first column
 
