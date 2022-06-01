@@ -34,38 +34,16 @@ def get_timestamp(row):
      timestamp = row["rec_crt_ts"]
      return datetime.datetime.strptime(timestamp,TIME_FORMAT)
 
-def simulate(topic, ifp, firstObsTime, programStart, speedFactor):
-       # sleep computation
-       def compute_sleep_secs(obs_time):
-          time_elapsed = (datetime.datetime.utcnow() - programStart).seconds
-          sim_time_elapsed = ((obs_time - firstObsTime).days * 86400.0 + (obs_time - firstObsTime).seconds) / speedFactor
-          to_sleep_secs = sim_time_elapsed - time_elapsed
-          return to_sleep_secs
-
-       topublish = list()
+def simulate(topic, ifp, firstObsTime, programStart):
        for line in ifp:
+         topublish = list()
          event_data = json.dumps(line)
-         #print(event_data)
-         # entire line of input CSV is the message
-         obs_time = get_timestamp(line) # from first column
-
-       # how much time should we sleep?
-         if compute_sleep_secs(obs_time) > 1:
-          # notify the accumulated topublish
-            publish(publisher, topic, topublish) # notify accumulated messages
-            topublish = list() # empty out list
-
-          # recompute sleep, since notification takes a while
-            to_sleep_secs = compute_sleep_secs(obs_time)
-            if to_sleep_secs > 0:
-              logging.info('Sleeping {} seconds'.format(to_sleep_secs))
-              time.sleep(to_sleep_secs)
+         to_sleep_secs = random.uniform(0.0, 1.0)
+         logging.info('Sleeping {} seconds'.format(to_sleep_secs))
+         time.sleep(to_sleep_secs)
          topublish.append(event_data)
-      
-
-   # left-over records; notify again
-       publish(publisher, topic, topublish)
-#speedFactor=60
+         publish(publisher, topic, topublish)
+         
 if __name__ == '__main__':
     #parser = argparse.ArgumentParser(description='Send sensor data to Cloud Pub/Sub in small groups, simulating real-time behavior')
     #parser.add_argument('--speedFactor', help='Example: 60 implies 1 hour of data sent to Cloud Pub/Sub in 1 minute', required=True, type=float)
@@ -88,10 +66,10 @@ next(reader)
 for row in reader:
         if(n<1):
            firstObsTime = get_timestamp(row)
-           logging.info('Sending sensor data from {}'.format(firstObsTime))
+           logging.info('Sending finfo data from {}'.format(firstObsTime))
         else:
             break
         n=n+1
        
-simulate(event_type, reader, firstObsTime, programStartTime,60000000)
+simulate(event_type, reader, firstObsTime, programStartTime)
 
