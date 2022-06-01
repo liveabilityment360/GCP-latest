@@ -93,5 +93,5 @@ for row in reader:
             break
         n=n+1
        
-simulate(event_type, reader, firstObsTime, programStartTime,20000)
+simulate(event_type, reader, firstObsTime, programStartTime,40000)
 
