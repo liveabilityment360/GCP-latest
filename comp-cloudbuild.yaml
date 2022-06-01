@@ -1,0 +1,15 @@
+# gcloud builds submit --config=cloudbuild.yaml .
+steps:
+- id: '1 Run dataload'
+  name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |-
+       if [ -d "scripts/" ]; then
+        cd scripts
+        echo "*************** INITIAL DATA LOADING ******************"
+        echo "******* At environment: ********"
+        echo "*************************************************"
+       fi
+       bash git_dagfile_load.sh ${_DAGS_FOLDER}
