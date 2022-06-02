@@ -7,6 +7,7 @@ from airflow.utils.dates import days_ago
 bucket_path = models.Variable.get("bucket_path")
 project_id = models.Variable.get("project_id")
 gce_zone = models.Variable.get("gce_zone")
+gce_region= models.Variable.get("gce_region")
 
 
 default_args = {
@@ -15,6 +16,7 @@ default_args = {
     "dataflow_default_options": {
         "project": project_id,
         # Set to your zone
+         "region": gce_region,
         "zone": gce_zone,
         # This is a subfolder for storing temporary files, like the staged pipeline job.
         "tempLocation": bucket_path + "/tmp/",
