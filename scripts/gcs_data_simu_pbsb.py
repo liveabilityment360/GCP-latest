@@ -39,7 +39,7 @@ def simulate(topic, ifp, firstObsTime, programStart):
        for line in ifp:
          topublish = list()
          event_data = json.dumps(line)
-         to_sleep_secs = random.uniform(1,3)
+         to_sleep_secs = random.uniform(0.4,0.7)
          logging.info('Sleeping {} seconds'.format(to_sleep_secs))
          time.sleep(to_sleep_secs)
          topublish.append(event_data)
