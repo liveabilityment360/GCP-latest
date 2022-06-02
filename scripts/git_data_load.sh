@@ -8,12 +8,7 @@ gsutil cp ../data/dim_date.csv gs://${projectid}
 #gsutil cp ../data/dbtk.json gs://${projectid}
 # loading dim_date into date dimesion table.
   
-    bq load \
- --autodetect \
-    --source_format=CSV \
-    private_equity.dim_date\
-    gs://${projectid}/dim_date.csv
-
+  
 
 
 
