@@ -30,19 +30,40 @@ provider "google" {
   project = var.gcp_project
 }
 
-# Use `gcloud` to enable:
-# compute engine, pub/sub, dataflow, cloud build, cloud scheduler, cloud resource manager.
 
-resource "null_resource" "enable_service_usage_api" {
-  provisioner "local-exec" {
-    command = "gcloud services enable pubsub.googleapis.com cloudbuild.googleapis.com cloudscheduler.googleapis.com cloudresourcemanager.googleapis.com --project ${var.gcp_project}"
-  }  
-}
   
+  # Create a single Compute Engine instance
+resource "google_compute_instance" "default" {
+ name         = "finfo-instance1"
+  machine_type = "e2-medium"
+  zone         =  var.gcp_zone
+  tags         = ["ssh"]
+
+  metadata = {
+    enable-oslogin = "TRUE"
+  }
+  boot_disk {
+    initialize_params {
+      image = "debian-11-bullseye-v20220406"
+    }
+  }
+
+
+# Install setup files
+  metadata_startup_script = "sudo apt-get update;sudo apt-get install git-core;sudo apt-get install apache2 php7.0;sudo apt install python3-pip;sudo pip install google-cloud;sudo pip install google-cloud-pubsub;python3 -m pip install --upgrade pip;pip install apache-beam;pip install apitools;pip install api-base;pip install --upgrade google-cloud-storage"
+  
+  network_interface {
+    network = "default"
+
+    access_config {
+      # Include this section to give the VM an external IP address
+    }
+  }
+}
 
 resource "google_storage_bucket" "private-equity" {
-  name          = var.gcp_project
-  location      = "australia-southeast2"
+  name          = "private-equity"
+  location      = "US"
   force_destroy = true
     }
 
@@ -50,7 +71,7 @@ module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
   version = "3.2.0"
 
-  topic      = "priv-equity1"
+  topic      = "my_topic"
   project_id = var.gcp_project
 
 pull_subscriptions = [
@@ -66,7 +87,6 @@ pull_subscriptions = [
      
     }
   ]
-depends_on = [null_resource.enable_service_usage_api]
 }
 
 resource "google_service_account" "service_account" {
