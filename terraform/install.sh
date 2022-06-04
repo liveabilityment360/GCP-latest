@@ -1,10 +1,14 @@
 #! /bin/bash
-sudo apt-get update
-sudo apt install git
-sudo apt-get install apache2 php7.0
-sudo apt install python3-pip
-sudo pip install google-cloud
-sudo pip install google-cloud-pubsub
+apt update
+apt -y install apache2
+cat <<EOF > /var/www/html/index.html
+<html><body><p>Linux startup script from a local file.</p></body></html>
+apt-get update
+apt install git
+apt-get install apache2 php7.0
+apt install python3-pip
+pip install google-cloud
+pip install google-cloud-pubsub
 python3 -m pip install --upgrade pip
 pip install apache-beam
 pip install apitools
