@@ -4,7 +4,8 @@ sudo apt -y install apache2
 #apt-get update
 sudo apt install git
 sudo apt-get install apache2 php7.0
-sudo apt install python3-pip
+sudo apt-get -y install python3-pip
+#sudo apt install python3-pip
 sudo pip install google-cloud
 sudo pip install google-cloud-pubsub
 sudo python3 -m pip install --upgrade pip
