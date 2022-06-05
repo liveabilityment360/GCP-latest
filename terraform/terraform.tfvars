@@ -1,1 +1,1 @@
-gcp_project="gcp-project-346311"
+gcp_project="striped-impulse-352211"
