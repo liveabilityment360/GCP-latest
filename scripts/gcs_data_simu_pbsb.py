@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # create Pub/Sub notification topic
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 publisher = pubsub.PublisherClient()
-event_type = publisher.topic_path("gcp-project-346311",TOPIC)
+event_type = publisher.topic_path("striped-impulse-352211",TOPIC)
     # notify about each line in the input file
 programStartTime = datetime.datetime.utcnow()
 f_data = open(data_file)
