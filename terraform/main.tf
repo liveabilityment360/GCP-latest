@@ -61,7 +61,7 @@ resource "google_compute_instance" "default" {
 }
 
 resource "google_storage_bucket" "private-equity" {
-  name          = "private-equity"
+  name          = "striped-impulse-352211"
   location      = "US"
   force_destroy = true
     }
