@@ -1,5 +1,5 @@
 #!/bin/bash
-bq --location=australia-southeast2 mk -d gcp-project-346311:private_equity
+bq --location=australia-southeast2 mk -d striped-impulse-352211:private_equity
 
 bq mk   -t   --description "FINFO landing table"   \private_equity.raw_priv_equi  rec_crt_ts:TIMESTAMP,company_name:STRING,growth_stage:STRING,country:STRING,state:STRING,city:STRING,continent:STRING,industry:STRING,sub_industry:STRING,client_focus:STRING,business_model:STRING,company_status:STRING,round:STRING,amount_raised:STRING,currency:STRING,date:STRING,quarter:STRING,Month:STRING,Year:STRING,investor_types:STRING,investor_name:STRING,company_valuation_usd:STRING,valuation_date:STRING
 # create partitioned table for fact_pe
@@ -10,7 +10,7 @@ bq mk -t \
   private_equity.fact_pe
   
 bq mkdef --source_format=CSV --autodetect=TRUE \
-  gs://gcp-project-346311/dim_date.csv > dim_date_df
+  gs://striped-impulse-352211/dim_date.csv > dim_date_df
  
 bq mk --table \
   --external_table_definition=dim_date_df \
@@ -45,11 +45,11 @@ a.city as City,
 b.investor_name as InvestorName,
 b.investor_types as InvestorType,
 f.amount_raised as AmountRaised
-from `gcp-project-346311.private_equity.dim_company`c,
-`gcp-project-346311.private_equity.dim_country`a,
-`gcp-project-346311.private_equity.dim_date` d,
-`gcp-project-346311.private_equity.dim_investor`b,
-`gcp-project-346311.private_equity.fact_pe` f
+from `striped-impulse-352211.private_equity.dim_company`c,
+`striped-impulse-352211.private_equity.dim_country`a,
+`striped-impulse-352211.private_equity.dim_date` d,
+`striped-impulse-352211.private_equity.dim_investor`b,
+`striped-impulse-352211.private_equity.fact_pe` f
 where f.date_id = d.date_id
 and f.company_id = c.company_id
 and f.country_id = a.country_id
